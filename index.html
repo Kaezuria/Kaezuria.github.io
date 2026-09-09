@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SyntaxCrash // whoami</title>
+<title>Kaezuria // whoami</title>
 
 <meta
   name="description"
-  content="SyntaxCrash — cybersecurity, coding, Linux and experiments."
+  content="Kaezuria — cybersecurity, coding, Linux and experiments."
 >
 
 <meta name="theme-color" content="#070a0f">
@@ -17,7 +17,7 @@
 
 <link
   rel="preconnect"
-  href="https://fonts.gstatic.com"
+  href="https://fonts.googleapis.com"
   crossorigin
 >
 
@@ -27,10 +27,6 @@
 >
 
 <style>
-
-/* =====================================================
-   VARIABLES
-===================================================== */
 
 :root {
   --bg: #070a0f;
@@ -51,10 +47,6 @@
   --font: "JetBrains Mono", monospace;
 }
 
-/* =====================================================
-   RESET
-===================================================== */
-
 * {
   margin: 0;
   padding: 0;
@@ -68,7 +60,6 @@ html {
 body {
   min-height: 100vh;
   padding: clamp(1rem, 5vh, 4rem) 1rem 2rem;
-
   overflow-x: hidden;
 
   background:
@@ -83,10 +74,6 @@ body {
   font-family: var(--font);
 }
 
-/* =====================================================
-   BACKGROUND GRID
-===================================================== */
-
 body::before {
   content: "";
 
@@ -94,7 +81,6 @@ body::before {
   inset: 0;
 
   z-index: -1;
-
   pointer-events: none;
 
   background-image:
@@ -118,13 +104,8 @@ body::before {
     );
 }
 
-/* =====================================================
-   MAIN TERMINAL
-===================================================== */
-
 .terminal {
   width: min(100%, 720px);
-
   margin: auto;
 
   background: rgba(13,18,25,.96);
@@ -142,7 +123,6 @@ body::before {
 }
 
 @keyframes bootTerminal {
-
   from {
     opacity: 0;
     transform: translateY(15px) scale(.98);
@@ -152,19 +132,13 @@ body::before {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-
 }
-
-/* =====================================================
-   TITLE BAR
-===================================================== */
 
 .title-bar {
   display: flex;
   align-items: center;
 
   min-height: 48px;
-
   padding: .75rem 1rem;
 
   background: rgba(8,12,17,.9);
@@ -180,7 +154,6 @@ body::before {
 .dot {
   width: 10px;
   height: 10px;
-
   border-radius: 50%;
 }
 
@@ -200,30 +173,19 @@ body::before {
   margin-left: auto;
 
   color: var(--text-dim);
-
   font-size: .68rem;
 }
-
-/* =====================================================
-   SCREEN
-===================================================== */
 
 .screen {
   padding: clamp(1.5rem,5vw,2.5rem);
 }
 
-/* =====================================================
-   BOOT COMMAND
-===================================================== */
-
 .prompt {
   display: flex;
   flex-wrap: wrap;
-
   gap: .4rem;
 
   color: var(--text-dim);
-
   font-size: .8rem;
 }
 
@@ -263,16 +225,10 @@ body::before {
 }
 
 @keyframes typingBlink {
-
   50% {
     opacity: 0;
   }
-
 }
-
-/* =====================================================
-   NAME
-===================================================== */
 
 .ascii-name {
   display: flex;
@@ -285,14 +241,12 @@ body::before {
   font-size: clamp(1.8rem,8vw,2.6rem);
 
   font-weight: 700;
-
   letter-spacing: 1px;
 
   text-shadow:
     0 0 18px rgba(111,227,161,.3);
 
   opacity: 0;
-
   transform: translateY(8px);
 
   transition:
@@ -304,10 +258,6 @@ body::before {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* =====================================================
-   CURSEUR À CÔTÉ DE SYNTAXCRASH
-===================================================== */
 
 .name-cursor {
   display: inline-block;
@@ -329,26 +279,18 @@ body::before {
 }
 
 @keyframes nameCursorBlink {
-
   50% {
     opacity: 0;
   }
-
 }
-
-/* =====================================================
-   HANDLE
-===================================================== */
 
 .handle {
   margin-bottom: 2.5rem;
 
   color: var(--text-dim);
-
   font-size: .82rem;
 
   opacity: 0;
-
   transform: translateY(8px);
 
   transition:
@@ -361,15 +303,10 @@ body::before {
   transform: translateY(0);
 }
 
-/* =====================================================
-   SECTIONS
-===================================================== */
-
 .content-section {
   margin-bottom: 2rem;
 
   opacity: 0;
-
   transform: translateY(12px);
 
   transition:
@@ -396,19 +333,13 @@ body::before {
   font-weight: 600;
 
   letter-spacing: 2px;
-
   text-transform: uppercase;
 }
 
 .field::before {
   content: "//";
-
   color: var(--border);
 }
-
-/* =====================================================
-   ABOUT
-===================================================== */
 
 .output {
   padding-left: 1rem;
@@ -418,13 +349,8 @@ body::before {
   color: var(--text);
 
   font-size: .93rem;
-
   line-height: 1.8;
 }
-
-/* =====================================================
-   STATUS
-===================================================== */
 
 .status-line {
   display: flex;
@@ -435,7 +361,6 @@ body::before {
   padding-left: 1rem;
 
   color: var(--text-dim);
-
   font-size: .8rem;
 }
 
@@ -457,17 +382,11 @@ body::before {
 }
 
 @keyframes pulse {
-
   50% {
     opacity: .35;
     transform: scale(.75);
   }
-
 }
-
-/* =====================================================
-   LINKS
-===================================================== */
 
 .links {
   display: flex;
@@ -514,21 +433,15 @@ body::before {
   color: var(--green);
 }
 
-/* =====================================================
-   COMMENTS
-===================================================== */
-
 .comments-toggle {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   cursor: pointer;
-
   user-select: none;
 
-  transition:
-    color .2s ease;
+  transition: color .2s ease;
 }
 
 .comments-toggle:hover {
@@ -550,7 +463,6 @@ body::before {
   max-height: 2000px;
 
   overflow: hidden;
-
   opacity: 1;
 
   transition:
@@ -560,13 +472,8 @@ body::before {
 
 #commentsBox.closed {
   max-height: 0;
-
   opacity: 0;
 }
-
-/* =====================================================
-   SECRET BUTTON
-===================================================== */
 
 .secret-wrap {
   display: flex;
@@ -607,7 +514,6 @@ body::before {
 }
 
 @keyframes glitch {
-
   0% {
     transform: translate(0);
   }
@@ -627,12 +533,7 @@ body::before {
   100% {
     transform: translate(0);
   }
-
 }
-
-/* =====================================================
-   FOOTER
-===================================================== */
 
 footer {
   padding: 1.75rem 1rem 0;
@@ -647,10 +548,6 @@ footer {
 footer .tag {
   color: var(--orange);
 }
-
-/* =====================================================
-   MODAL
-===================================================== */
 
 .modal-backdrop {
   position: fixed;
@@ -680,11 +577,9 @@ footer .tag {
 }
 
 @keyframes fadeModal {
-
   to {
     opacity: 1;
   }
-
 }
 
 .modal-terminal {
@@ -695,7 +590,6 @@ footer .tag {
   background: var(--panel);
 
   border: 1px solid var(--border);
-
   border-radius: 12px;
 
   box-shadow:
@@ -707,7 +601,6 @@ footer .tag {
 }
 
 @keyframes modalIn {
-
   from {
     opacity: 0;
     transform: scale(.94) translateY(12px);
@@ -717,7 +610,6 @@ footer .tag {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
-
 }
 
 .modal-titlebar {
@@ -759,13 +651,8 @@ footer .tag {
   margin-bottom: .8rem;
 
   color: var(--text-dim);
-
   font-size: .72rem;
 }
-
-/* =====================================================
-   TERMINAL LOG
-===================================================== */
 
 .modal-log {
   max-height: 190px;
@@ -800,10 +687,6 @@ footer .tag {
   color: var(--pink);
 }
 
-/* =====================================================
-   EXFIL ANIMATION
-===================================================== */
-
 .exfil-line {
   opacity: 0;
 
@@ -812,7 +695,6 @@ footer .tag {
 }
 
 @keyframes exfilAppear {
-
   from {
     opacity: 0;
     transform: translateX(-5px);
@@ -822,12 +704,7 @@ footer .tag {
     opacity: 1;
     transform: translateX(0);
   }
-
 }
-
-/* =====================================================
-   SNAKE
-===================================================== */
 
 #snakeCanvas {
   display: none;
@@ -891,10 +768,6 @@ footer .tag {
   border-color: var(--green);
 }
 
-/* =====================================================
-   INPUT
-===================================================== */
-
 .modal-inputline {
   display: flex;
   align-items: center;
@@ -930,10 +803,6 @@ footer .tag {
 .modal-inputline input::placeholder {
   color: var(--text-dim);
 }
-
-/* =====================================================
-   KAWAII ANIME ROMANCE THEME
-===================================================== */
 
 body.kawaii-mode {
   --bg: #fff0f6;
@@ -1048,11 +917,9 @@ body.kawaii-mode .screen::before {
 }
 
 @keyframes kawaiiFloat {
-
   50% {
     transform: translateY(-3px);
   }
-
 }
 
 body.kawaii-mode .ascii-name {
@@ -1165,10 +1032,6 @@ body.theme-changing * {
     box-shadow .45s ease !important;
 }
 
-/* =====================================================
-   MOBILE
-===================================================== */
-
 @media (max-width:520px) {
 
   body {
@@ -1195,10 +1058,6 @@ body.theme-changing * {
 
 }
 
-/* =====================================================
-   REDUCED MOTION
-===================================================== */
-
 @media (prefers-reduced-motion:reduce) {
 
   *,
@@ -1217,10 +1076,6 @@ body.theme-changing * {
 
 <body>
 
-<!-- =====================================================
-     MAIN TERMINAL
-===================================================== -->
-
 <main class="terminal">
 
   <header class="title-bar">
@@ -1232,19 +1087,17 @@ body.theme-changing * {
     </div>
 
     <span class="window-title">
-      guest@syntaxcrash: ~
+      guest@kaezuria: ~
     </span>
 
   </header>
 
   <div class="screen">
 
-    <!-- BOOT -->
-
     <div class="prompt">
 
       <span class="user">
-        guest@syntaxcrash
+        guest@kaezuria
       </span>
 
       <span>:</span>
@@ -1263,22 +1116,16 @@ body.theme-changing * {
 
     </div>
 
-    <!-- NAME -->
-
     <h1 class="ascii-name" id="siteName">
 
-      SyntaxCrash
+      Kaezuria
 
       <span class="name-cursor"></span>
 
     </h1>
 
-    <!-- HANDLE -->
-
     <div class="handle" id="siteHandle">
     </div>
-
-    <!-- ABOUT -->
 
     <section class="content-section">
 
@@ -1288,15 +1135,13 @@ body.theme-changing * {
 
       <p class="output">
 
-        I'm SyntaxCrash, 15 years old.
+        I'm Kaezuria, 15 years old.
         I'm a first-year high school student studying cybersecurity,
         and my goal is to become a cybersecurity engineer one day.
 
       </p>
 
     </section>
-
-    <!-- STATUS -->
 
     <section class="content-section">
 
@@ -1316,8 +1161,6 @@ body.theme-changing * {
 
     </section>
 
-    <!-- CONTACT -->
-
     <section class="content-section">
 
       <div class="field">
@@ -1326,31 +1169,29 @@ body.theme-changing * {
 
       <nav class="links">
 
-        <a href="mailto:syntaxcrashworks.dev@gmail.com">
+        <a href="mailto:syntaxworks.dev@gmail.com">
 
           <span class="arrow">›</span>
 
-          email · syntaxcrashworks.dev@gmail.com
+          email · syntaxworks.dev@gmail.com
 
         </a>
 
         <a
-          href="https://github.com/SyntaxCrash"
+          href="https://github.com/Kaezuria"
           target="_blank"
           rel="noopener noreferrer"
         >
 
           <span class="arrow">›</span>
 
-          github · /SyntaxCrash
+          github · /Kaezuria
 
         </a>
 
       </nav>
 
     </section>
-
-    <!-- COMMENTS -->
 
     <section class="content-section">
 
@@ -1376,7 +1217,7 @@ body.theme-changing * {
 
         <script
           src="https://giscus.app/client.js"
-          data-repo="SyntaxCrash/SyntaxCrash.github.io"
+          data-repo="Kaezuria/Kaezuria.github.io"
           data-repo-id="R_kgDOUBgR2g"
           data-category="General"
           data-category-id="DIC_kwDOUBgR2s4DEFNm"
@@ -1399,10 +1240,6 @@ body.theme-changing * {
 
 </main>
 
-<!-- =====================================================
-     SECRET BUTTON
-===================================================== -->
-
 <div class="secret-wrap">
 
   <button
@@ -1415,23 +1252,15 @@ body.theme-changing * {
 
 </div>
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
 <footer>
 
-  © 2026 SyntaxCrash
+  © 2026 Kaezuria
 
   <span class="tag">
     // keep learning
   </span>
 
 </footer>
-
-<!-- =====================================================
-     SECRET TERMINAL
-===================================================== -->
 
 <div
   class="modal-backdrop"
@@ -1486,15 +1315,11 @@ body.theme-changing * {
 
       </div>
 
-      <!-- SNAKE -->
-
       <canvas
         id="snakeCanvas"
         width="240"
         height="240"
       ></canvas>
-
-      <!-- SNAKE CONTROLS -->
 
       <div id="snakeControls">
 
@@ -1546,8 +1371,6 @@ body.theme-changing * {
 
       </div>
 
-      <!-- COMMAND INPUT -->
-
       <div class="modal-inputline">
 
         <span class="sym">
@@ -1573,10 +1396,6 @@ body.theme-changing * {
 
 <script>
 
-/* =====================================================
-   COMMANDS
-===================================================== */
-
 const COMMANDS = {
 
   music: {
@@ -1595,10 +1414,6 @@ const COMMANDS = {
   }
 
 };
-
-/* =====================================================
-   ELEMENTS
-===================================================== */
 
 const typedCommand =
   document.getElementById("typedCommand");
@@ -1632,10 +1447,6 @@ const commentsToggle =
 
 const commentsBox =
   document.getElementById("commentsBox");
-
-/* =====================================================
-   BOOT ANIMATION
-===================================================== */
 
 const bootCommand = "whoami";
 
@@ -1692,10 +1503,6 @@ function revealSite() {
 
 }
 
-/* =====================================================
-   COMMENTS
-===================================================== */
-
 function toggleComments() {
 
   const closed =
@@ -1735,10 +1542,6 @@ commentsToggle.addEventListener(
 
   }
 );
-
-/* =====================================================
-   SECRET TERMINAL
-===================================================== */
 
 function openSecretTerminal() {
 
@@ -1801,10 +1604,6 @@ modal.addEventListener(
   }
 );
 
-/* =====================================================
-   TERMINAL LOG
-===================================================== */
-
 function addLine(text,type="") {
 
   const line =
@@ -1821,10 +1620,6 @@ function addLine(text,type="") {
     log.scrollHeight;
 
 }
-
-/* =====================================================
-   KAWAII MODE
-===================================================== */
 
 function activateKawaiiMode() {
 
@@ -1930,10 +1725,6 @@ function deactivateKawaiiMode() {
 
 }
 
-/* =====================================================
-   EXFIL COMMAND
-===================================================== */
-
 function runExfil() {
 
   input.disabled = true;
@@ -2007,10 +1798,6 @@ function runExfil() {
 
 }
 
-/* =====================================================
-   SNAKE
-===================================================== */
-
 const canvas =
   document.getElementById("snakeCanvas");
 
@@ -2048,10 +1835,6 @@ let gameInterval = null;
 
 let gameActive = false;
 
-/* =====================================================
-   FOOD
-===================================================== */
-
 function placeFood() {
 
   let newFood;
@@ -2081,10 +1864,6 @@ function placeFood() {
   food = newFood;
 
 }
-
-/* =====================================================
-   DRAW
-===================================================== */
 
 function drawSnake() {
 
@@ -2137,10 +1916,6 @@ function drawSnake() {
   );
 
 }
-
-/* =====================================================
-   GAME LOOP
-===================================================== */
 
 function stepSnake() {
 
@@ -2201,10 +1976,6 @@ function stepSnake() {
 
 }
 
-/* =====================================================
-   START SNAKE
-===================================================== */
-
 function startSnake() {
 
   if(gameActive) return;
@@ -2257,10 +2028,6 @@ function startSnake() {
 
 }
 
-/* =====================================================
-   END SNAKE
-===================================================== */
-
 function endSnake() {
 
   if(!gameActive) return;
@@ -2287,10 +2054,6 @@ function endSnake() {
   input.focus();
 
 }
-
-/* =====================================================
-   SNAKE DIRECTION
-===================================================== */
 
 function setSnakeDirection(name) {
 
@@ -2338,10 +2101,6 @@ function setSnakeDirection(name) {
 
 }
 
-/* =====================================================
-   MOBILE CONTROLS
-===================================================== */
-
 document
   .querySelectorAll(".dpad-btn")
   .forEach(button => {
@@ -2358,10 +2117,6 @@ document
     );
 
   });
-
-/* =====================================================
-   KEYBOARD
-===================================================== */
 
 document.addEventListener(
   "keydown",
@@ -2416,10 +2171,6 @@ document.addEventListener(
 
   }
 );
-
-/* =====================================================
-   TERMINAL COMMANDS
-===================================================== */
 
 input.addEventListener(
   "keydown",
@@ -2513,10 +2264,6 @@ input.addEventListener(
 
   }
 );
-
-/* =====================================================
-   START SITE
-===================================================== */
 
 window.addEventListener(
   "DOMContentLoaded",
