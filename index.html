@@ -1,1390 +1,1789 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Kaezuria // whoami</title>
-
-<meta
-  name="description"
-  content="Kaezuria — cybersecurity, coding, Linux and experiments."
->
-
-<meta name="theme-color" content="#070a0f">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link
-  rel="preconnect"
-  href="https://fonts.googleapis.com"
-  crossorigin
->
-
-<link
-  href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-  rel="stylesheet"
->
-
-<style>
-
-:root {
-  --bg: #070a0f;
-  --panel: #0d1219;
-  --panel-light: #101720;
-  --border: #1d2a35;
-
-  --text: #d5dee6;
-  --text-dim: #657583;
-
-  --green: #6fe3a1;
-  --green-soft: rgba(111,227,161,.12);
-
-  --orange: #ffb454;
-  --pink: #ff5f9e;
-  --blue: #6ba3d6;
-
-  --font: "JetBrains Mono", monospace;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  min-height: 100vh;
-  padding: clamp(1rem, 5vh, 4rem) 1rem 2rem;
-  overflow-x: hidden;
-
-  background:
-    radial-gradient(
-      circle at 50% -10%,
-      rgba(111,227,161,.08),
-      transparent 40%
-    ),
-    var(--bg);
-
-  color: var(--text);
-  font-family: var(--font);
-}
-
-body::before {
-  content: "";
-
-  position: fixed;
-  inset: 0;
-
-  z-index: -1;
-  pointer-events: none;
-
-  background-image:
-    linear-gradient(
-      rgba(111,227,161,.028) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(111,227,161,.028) 1px,
-      transparent 1px
-    );
-
-  background-size: 42px 42px;
-
-  mask-image:
-    radial-gradient(
-      ellipse 85% 65% at 50% 10%,
-      black 20%,
-      transparent 90%
-    );
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kaezuria — Cybersecurity & Development</title>
+
+  <meta
+    name="description"
+    content="Kaezuria — cybersecurity student, developer, Linux enthusiast and gamer."
+  >
+
+  <meta name="theme-color" content="#080b12">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --bg: #080b12;
+      --bg-soft: #0c111a;
+      --card: rgba(15, 21, 31, .72);
+      --card-hover: rgba(19, 27, 39, .9);
+
+      --border: rgba(255,255,255,.08);
+      --border-hover: rgba(111,227,161,.28);
+
+      --text: #edf3f7;
+      --muted: #7f8c99;
+
+      --green: #6fe3a1;
+      --green-soft: rgba(111,227,161,.12);
+
+      --blue: #76a9ff;
+      --purple: #a78bfa;
+      --pink: #ff77ad;
+      --orange: #ffb454;
+
+      --font: "Inter", sans-serif;
+      --mono: "JetBrains Mono", monospace;
+
+      --radius: 18px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+
+      background:
+        radial-gradient(
+          circle at 15% 0%,
+          rgba(111,227,161,.10),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 85% 10%,
+          rgba(118,169,255,.08),
+          transparent 28%
+        ),
+        var(--bg);
+
+      color: var(--text);
+      font-family: var(--font);
+    }
+
+    /* Background grid */
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.018) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.018) 1px,
+          transparent 1px
+        );
+
+      background-size: 42px 42px;
+
+      mask-image:
+        radial-gradient(
+          ellipse 80% 70% at 50% 20%,
+          black,
+          transparent 90%
+        );
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      top: -250px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: -1;
+      pointer-events: none;
+
+      background: rgba(111,227,161,.08);
+      filter: blur(120px);
+      border-radius: 50%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+
+      padding: 18px 0;
+
+      background: rgba(8,11,18,.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      color: var(--text);
+      text-decoration: none;
+
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+
+    .logo-dot {
+      width: 9px;
+      height: 9px;
+
+      border-radius: 50%;
+      background: var(--green);
+
+      box-shadow:
+        0 0 14px rgba(111,227,161,.8);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+
+      font-size: .86rem;
+      font-weight: 500;
+
+      transition:
+        color .2s ease,
+        transform .2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .nav-contact {
+      padding: 9px 14px;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      background: rgba(255,255,255,.025);
+
+      transition:
+        border-color .2s ease,
+        background .2s ease;
+    }
+
+    .nav-contact:hover {
+      border-color: var(--border-hover);
+      background: var(--green-soft);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 650px;
 
-.terminal {
-  width: min(100%, 720px);
-  margin: auto;
+      display: flex;
+      align-items: center;
+
+      padding: 90px 0 100px;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      margin-bottom: 22px;
+      padding: 7px 11px;
+
+      color: var(--green);
+      background: var(--green-soft);
+
+      border: 1px solid rgba(111,227,161,.14);
+      border-radius: 999px;
+
+      font-family: var(--mono);
+      font-size: .72rem;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+
+      background: var(--green);
+
+      box-shadow:
+        0 0 10px var(--green);
+
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        opacity: .35;
+        transform: scale(.7);
+      }
+    }
+
+    .hero h1 {
+      max-width: 850px;
+
+      font-size: clamp(3.3rem, 10vw, 7rem);
+      line-height: .95;
+      letter-spacing: -5px;
+      font-weight: 800;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+
+      text-shadow:
+        0 0 35px rgba(111,227,161,.2);
+    }
+
+    .hero-description {
+      max-width: 670px;
+
+      margin-top: 28px;
+
+      color: var(--muted);
+
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
 
-  background: rgba(13,18,25,.96);
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      min-height: 44px;
+      padding: 0 17px;
 
-  border: 1px solid var(--border);
-  border-radius: 12px;
+      border-radius: 11px;
 
-  overflow: hidden;
+      text-decoration: none;
 
-  box-shadow:
-    0 30px 90px rgba(0,0,0,.55),
-    0 0 0 1px rgba(111,227,161,.025);
+      font-size: .86rem;
+      font-weight: 600;
 
-  animation: bootTerminal .6s ease-out;
-}
+      transition:
+        transform .2s ease,
+        border-color .2s ease,
+        background .2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      color: #07100b;
+      background: var(--green);
 
-@keyframes bootTerminal {
-  from {
-    opacity: 0;
-    transform: translateY(15px) scale(.98);
-  }
+      box-shadow:
+        0 8px 30px rgba(111,227,161,.15);
+    }
 
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
+    .button-primary:hover {
+      box-shadow:
+        0 12px 35px rgba(111,227,161,.25);
+    }
+
+    .button-secondary {
+      color: var(--text);
+
+      background: rgba(255,255,255,.025);
+      border: 1px solid var(--border);
+    }
+
+    .button-secondary:hover {
+      background: rgba(255,255,255,.05);
+      border-color: var(--border-hover);
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    section {
+      scroll-margin-top: 100px;
+    }
+
+    .section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 35px;
+    }
+
+    .section-label {
+      margin-bottom: 9px;
+
+      color: var(--green);
+
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.8rem, 5vw, 2.7rem);
+      letter-spacing: -1.5px;
+    }
+
+    .section-heading p {
+      max-width: 600px;
+
+      margin-top: 10px;
+
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 18px;
+    }
+
+    .card {
+      padding: 27px;
+
+      background: var(--card);
+
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
 
-.title-bar {
-  display: flex;
-  align-items: center;
+      transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background .25s ease;
+    }
 
-  min-height: 48px;
-  padding: .75rem 1rem;
+    .card:hover {
+      transform: translateY(-4px);
 
-  background: rgba(8,12,17,.9);
+      background: var(--card-hover);
+      border-color: var(--border-hover);
+    }
+
+    .card-title {
+      margin-bottom: 13px;
 
-  border-bottom: 1px solid var(--border);
-}
+      font-size: 1rem;
+      font-weight: 700;
+    }
 
-.window-dots {
-  display: flex;
-  gap: .5rem;
-}
+    .card p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: .91rem;
+    }
+
+    .status-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      color: var(--green);
+      font-size: .85rem;
+      font-weight: 600;
+    }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
+    .status-dot {
+      width: 8px;
+      height: 8px;
 
-.dot.red {
-  background: #ff5f56;
-}
+      border-radius: 50%;
+      background: var(--green);
+
+      box-shadow:
+        0 0 12px var(--green);
+    }
 
-.dot.yellow {
-  background: #ffbd2e;
-}
+    .status-card .small {
+      margin-top: 25px;
 
-.dot.green {
-  background: #27c93f;
-}
+      color: var(--muted);
+      font-size: .8rem;
+      line-height: 1.6;
+    }
 
-.window-title {
-  margin-left: auto;
+    /* =========================
+       SKILLS
+    ========================= */
 
-  color: var(--text-dim);
-  font-size: .68rem;
-}
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
 
-.screen {
-  padding: clamp(1.5rem,5vw,2.5rem);
-}
+    .skill {
+      padding: 22px;
 
-.prompt {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .4rem;
+      background: var(--card);
 
-  color: var(--text-dim);
-  font-size: .8rem;
-}
+      border: 1px solid var(--border);
+      border-radius: 15px;
 
-.prompt .user {
-  color: var(--green);
-}
+      transition:
+        transform .2s ease,
+        border-color .2s ease;
+    }
 
-.prompt .path {
-  color: var(--blue);
-}
+    .skill:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-hover);
+    }
 
-.prompt .command {
-  color: var(--text);
-}
+    .skill-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-#typedCommand {
-  white-space: pre;
-}
+      width: 40px;
+      height: 40px;
 
-.typing-cursor {
-  display: inline-block;
+      margin-bottom: 17px;
 
-  width: .5em;
-  height: 1em;
+      border-radius: 11px;
 
-  margin-left: 3px;
+      color: var(--green);
+      background: var(--green-soft);
 
-  background: var(--green);
+      font-family: var(--mono);
+      font-weight: 700;
+    }
 
-  vertical-align: -.12em;
+    .skill strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: .9rem;
+    }
 
-  box-shadow:
-    0 0 10px rgba(111,227,161,.6);
+    .skill span {
+      color: var(--muted);
+      font-size: .76rem;
+    }
 
-  animation:
-    typingBlink .7s steps(1) infinite;
-}
+    /* =========================
+       PROJECTS
+    ========================= */
 
-@keyframes typingBlink {
-  50% {
-    opacity: 0;
-  }
-}
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
 
-.ascii-name {
-  display: flex;
-  align-items: center;
+    .project {
+      position: relative;
+      overflow: hidden;
 
-  margin: .8rem 0 .2rem;
+      padding: 27px;
 
-  color: var(--green);
+      min-height: 230px;
 
-  font-size: clamp(1.8rem,8vw,2.6rem);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
 
-  font-weight: 700;
-  letter-spacing: 1px;
+      text-decoration: none;
 
-  text-shadow:
-    0 0 18px rgba(111,227,161,.3);
+      transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background .25s ease;
+    }
 
-  opacity: 0;
-  transform: translateY(8px);
+    .project::after {
+      content: "";
 
-  transition:
-    opacity .6s ease,
-    transform .6s ease;
-}
+      position: absolute;
+      width: 160px;
+      height: 160px;
 
-.ascii-name.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+      right: -70px;
+      bottom: -90px;
 
-.name-cursor {
-  display: inline-block;
+      border-radius: 50%;
 
-  width: .5em;
-  height: 1em;
+      background: rgba(111,227,161,.08);
+      filter: blur(35px);
+    }
 
-  margin-left: 5px;
+    .project:hover {
+      transform: translateY(-5px);
+      background: var(--card-hover);
+      border-color: var(--border-hover);
+    }
 
-  background: var(--green);
+    .project-number {
+      color: var(--green);
 
-  vertical-align: -.12em;
+      font-family: var(--mono);
+      font-size: .7rem;
+    }
 
-  box-shadow:
-    0 0 10px rgba(111,227,161,.7);
+    .project h3 {
+      margin-top: 22px;
 
-  animation:
-    nameCursorBlink .8s steps(1) infinite;
-}
+      font-size: 1.25rem;
+    }
 
-@keyframes nameCursorBlink {
-  50% {
-    opacity: 0;
-  }
-}
+    .project p {
+      margin-top: 10px;
 
-.handle {
-  margin-bottom: 2.5rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: .86rem;
+    }
 
-  color: var(--text-dim);
-  font-size: .82rem;
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
 
-  opacity: 0;
-  transform: translateY(8px);
+      margin-top: 22px;
+    }
 
-  transition:
-    opacity .5s ease,
-    transform .5s ease;
-}
+    .tag {
+      padding: 5px 8px;
 
-.handle.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+      color: var(--muted);
+      background: rgba(255,255,255,.04);
 
-.content-section {
-  margin-bottom: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 7px;
 
-  opacity: 0;
-  transform: translateY(12px);
+      font-family: var(--mono);
+      font-size: .65rem;
+    }
 
-  transition:
-    opacity .55s ease,
-    transform .55s ease;
-}
+    /* =========================
+       CONTACT
+    ========================= */
 
-.content-section.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .contact-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
 
-.field {
-  display: flex;
-  align-items: center;
+      padding: 35px;
 
-  gap: .25rem;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(111,227,161,.08),
+          rgba(118,169,255,.04)
+        );
 
-  margin-bottom: .75rem;
+      border: 1px solid rgba(111,227,161,.14);
+      border-radius: var(--radius);
+    }
 
-  color: var(--text-dim);
+    .contact-card h2 {
+      font-size: 1.7rem;
+    }
 
-  font-size: .68rem;
-  font-weight: 600;
+    .contact-card p {
+      max-width: 550px;
 
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
+      margin-top: 8px;
 
-.field::before {
-  content: "//";
-  color: var(--border);
-}
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: .88rem;
+    }
 
-.output {
-  padding-left: 1rem;
+    /* =========================
+       COMMENTS
+    ========================= */
 
-  border-left: 2px solid var(--border);
+    .comments-box {
+      padding: 25px;
 
-  color: var(--text);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
 
-  font-size: .93rem;
-  line-height: 1.8;
-}
+    /* =========================
+       FOOTER
+    ========================= */
 
-.status-line {
-  display: flex;
-  align-items: center;
+    footer {
+      padding: 45px 0 30px;
 
-  gap: .65rem;
+      color: var(--muted);
 
-  padding-left: 1rem;
+      text-align: center;
+      font-size: .74rem;
+    }
 
-  color: var(--text-dim);
-  font-size: .8rem;
-}
+    footer strong {
+      color: var(--green);
+      font-family: var(--mono);
+    }
 
-.pulse {
-  width: 8px;
-  height: 8px;
+    /* =========================
+       SECRET BUTTON
+    ========================= */
 
-  flex-shrink: 0;
+    .secret-wrap {
+      display: flex;
+      justify-content: center;
 
-  border-radius: 50%;
+      padding: 20px 0;
+    }
 
-  background: var(--green);
+    .secret-btn {
+      padding: 7px 10px;
 
-  box-shadow:
-    0 0 10px var(--green);
+      color: var(--muted);
+      background: transparent;
 
-  animation:
-    pulse 2s ease-in-out infinite;
-}
+      border: 0;
 
-@keyframes pulse {
-  50% {
-    opacity: .35;
-    transform: scale(.75);
-  }
-}
+      font-family: var(--mono);
+      font-size: .65rem;
 
-.links {
-  display: flex;
-  flex-direction: column;
+      cursor: pointer;
+      opacity: .45;
 
-  gap: .5rem;
+      transition:
+        color .2s ease,
+        opacity .2s ease;
+    }
 
-  padding-left: 1rem;
-}
+    .secret-btn:hover {
+      color: var(--green);
+      opacity: 1;
+    }
 
-.links a {
-  display: inline-flex;
-  align-items: center;
+    /* =========================
+       MODAL / HIDDEN TERMINAL
+    ========================= */
 
-  gap: .55rem;
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
 
-  width: fit-content;
+      display: none;
+      align-items: center;
+      justify-content: center;
 
-  padding: .25rem 0;
+      padding: 20px;
 
-  color: var(--text);
+      background: rgba(3,5,8,.78);
+      backdrop-filter: blur(12px);
 
-  font-size: .84rem;
+      opacity: 0;
+    }
 
-  text-decoration: none;
+    .modal-backdrop.open {
+      display: flex;
+      animation: fadeModal .25s forwards;
+    }
 
-  border-bottom: 1px solid transparent;
+    @keyframes fadeModal {
+      to {
+        opacity: 1;
+      }
+    }
 
-  transition:
-    color .2s ease,
-    transform .2s ease,
-    border-color .2s ease;
-}
+    .modal-terminal {
+      width: min(100%, 570px);
 
-.links a:hover {
-  color: var(--green);
+      overflow: hidden;
 
-  border-color: var(--green);
+      background: #0d1219;
 
-  transform: translateX(4px);
-}
+      border: 1px solid #263442;
+      border-radius: 15px;
 
-.arrow {
-  color: var(--green);
-}
+      box-shadow:
+        0 40px 100px rgba(0,0,0,.7);
 
-.comments-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+      animation: modalIn .3s cubic-bezier(.22,1,.36,1);
+    }
 
-  cursor: pointer;
-  user-select: none;
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: scale(.94) translateY(12px);
+      }
 
-  transition: color .2s ease;
-}
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
 
-.comments-toggle:hover {
-  color: var(--green);
-}
+    .modal-titlebar {
+      display: flex;
+      align-items: center;
 
-.comments-toggle .chevron {
-  color: var(--green);
+      min-height: 45px;
+      padding: 0 14px;
 
-  transition:
-    transform .25s ease;
-}
+      background: #090d13;
+      border-bottom: 1px solid #1d2a35;
+    }
 
-.comments-toggle.closed .chevron {
-  transform: rotate(-90deg);
-}
+    .window-dots {
+      display: flex;
+      gap: 7px;
+    }
 
-#commentsBox {
-  max-height: 2000px;
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
 
-  overflow: hidden;
-  opacity: 1;
+    .dot.red {
+      background: #ff5f56;
+    }
 
-  transition:
-    max-height .4s ease,
-    opacity .25s ease;
-}
+    .dot.yellow {
+      background: #ffbd2e;
+    }
 
-#commentsBox.closed {
-  max-height: 0;
-  opacity: 0;
-}
+    .dot.green {
+      background: #27c93f;
+    }
 
-.secret-wrap {
-  display: flex;
-  justify-content: center;
+    .window-title {
+      margin-left: auto;
 
-  margin-top: 1.4rem;
-}
+      color: #657583;
 
-.secret-btn {
-  background: transparent;
+      font-family: var(--mono);
+      font-size: .65rem;
+    }
 
-  border: 0;
+    .modal-close {
+      margin-left: 12px;
 
-  color: var(--text-dim);
+      color: #657583;
+      background: transparent;
 
-  font-family: var(--font);
+      border: 0;
 
-  font-size: .66rem;
+      font-family: var(--mono);
+      cursor: pointer;
+    }
 
-  letter-spacing: 1px;
+    .modal-close:hover {
+      color: var(--orange);
+    }
 
-  cursor: pointer;
+    .modal-body {
+      padding: 20px;
+    }
 
-  opacity: .5;
+    .modal-hint {
+      margin-bottom: 12px;
 
-  transition:
-    opacity .2s ease,
-    color .2s ease;
-}
+      color: #657583;
 
-.secret-btn:hover {
-  color: var(--green);
+      font-family: var(--mono);
+      font-size: .7rem;
+    }
 
-  opacity: 1;
+    .modal-log {
+      max-height: 190px;
+      overflow-y: auto;
 
-  animation:
-    glitch .35s steps(2) infinite;
-}
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
 
-@keyframes glitch {
-  0% {
-    transform: translate(0);
-  }
+      margin-bottom: 12px;
+    }
 
-  25% {
-    transform: translate(-1px,1px);
-  }
+    .line {
+      color: #d5dee6;
 
-  50% {
-    transform: translate(1px,-1px);
-  }
+      font-family: var(--mono);
+      font-size: .76rem;
 
-  75% {
-    transform: translate(-1px,-1px);
-  }
+      overflow-wrap: anywhere;
+    }
 
-  100% {
-    transform: translate(0);
-  }
-}
+    .line.echo {
+      color: #657583;
+    }
 
-footer {
-  padding: 1.75rem 1rem 0;
+    .line.ok {
+      color: #6fe3a1;
+    }
 
-  color: var(--text-dim);
+    .line.err {
+      color: #ff5f9e;
+    }
 
-  font-size: .68rem;
+    #snakeCanvas {
+      display: none;
 
-  text-align: center;
-}
+      width: min(240px, 75vw);
+      height: auto;
 
-footer .tag {
-  color: var(--orange);
-}
+      margin: 0 auto 12px;
 
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
+      background: #0a0e14;
 
-  z-index: 100;
+      border: 1px solid #1d2a35;
+      border-radius: 6px;
 
-  display: none;
+      image-rendering: pixelated;
+    }
 
-  align-items: center;
-  justify-content: center;
+    #snakeControls {
+      display: none;
+      justify-content: center;
 
-  padding: 1rem;
+      margin-bottom: 12px;
+    }
 
-  background: rgba(3,5,8,.78);
+    .dpad {
+      display: grid;
 
-  backdrop-filter: blur(7px);
+      grid-template-columns: repeat(3, 38px);
+      grid-template-rows: repeat(3, 38px);
 
-  opacity: 0;
-}
+      gap: 4px;
+    }
 
-.modal-backdrop.open {
-  display: flex;
+    .dpad-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  animation:
-    fadeModal .25s ease forwards;
-}
+      color: var(--green);
+      background: #0a0e14;
 
-@keyframes fadeModal {
-  to {
-    opacity: 1;
-  }
-}
+      border: 1px solid #1d2a35;
+      border-radius: 5px;
 
-.modal-terminal {
-  width: min(100%,560px);
+      cursor: pointer;
+      touch-action: manipulation;
+    }
 
-  overflow: hidden;
+    .dpad-btn:active {
+      background: var(--green-soft);
+      border-color: var(--green);
+    }
 
-  background: var(--panel);
+    .modal-inputline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
 
-  border: 1px solid var(--border);
-  border-radius: 12px;
+      padding-top: 12px;
 
-  box-shadow:
-    0 40px 100px rgba(0,0,0,.75),
-    0 0 40px rgba(111,227,161,.04);
+      border-top: 1px solid #1d2a35;
+    }
 
-  animation:
-    modalIn .3s cubic-bezier(.22,1,.36,1);
-}
+    .sym {
+      color: var(--green);
+      font-family: var(--mono);
+    }
 
-@keyframes modalIn {
-  from {
-    opacity: 0;
-    transform: scale(.94) translateY(12px);
-  }
+    .modal-inputline input {
+      flex: 1;
+      min-width: 0;
 
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
+      color: #d5dee6;
+      background: transparent;
 
-.modal-titlebar {
-  display: flex;
-  align-items: center;
+      border: 0;
+      outline: 0;
 
-  min-height: 46px;
+      font-family: var(--mono);
+      font-size: .78rem;
+    }
 
-  padding: .7rem 1rem;
+    .modal-inputline input::placeholder {
+      color: #657583;
+    }
 
-  background: rgba(8,12,17,.9);
+    /* =========================
+       KAWAII MODE
+    ========================= */
 
-  border-bottom: 1px solid var(--border);
-}
+    body.kawaii-mode {
+      --bg: #fff0f6;
+      --bg-soft: #fff8fc;
+      --card: rgba(255,248,252,.8);
+      --card-hover: rgba(255,255,255,.95);
 
-.modal-close {
-  margin-left: .7rem;
+      --border: rgba(255,119,173,.20);
+      --border-hover: rgba(255,95,158,.45);
 
-  background: transparent;
+      --text: #5d3a4b;
+      --muted: #a86f8a;
 
-  border: 0;
+      --green: #ff5f9e;
+      --green-soft: rgba(255,95,158,.12);
+      --blue: #7aa7ff;
+      --purple: #c77dff;
+    }
 
-  color: var(--text-dim);
+    body.kawaii-mode {
+      background:
+        radial-gradient(
+          circle at 20% 10%,
+          rgba(255,154,196,.35),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(199,125,255,.20),
+          transparent 30%
+        ),
+        #fff0f6;
+    }
 
-  font-family: var(--font);
+    body.kawaii-mode::before {
+      background-image:
+        radial-gradient(
+          circle,
+          rgba(255,119,173,.20) 2px,
+          transparent 3px
+        ),
+        radial-gradient(
+          circle,
+          rgba(199,125,255,.15) 2px,
+          transparent 3px
+        );
 
-  cursor: pointer;
-}
+      background-size:
+        32px 32px,
+        47px 47px;
 
-.modal-close:hover {
-  color: var(--orange);
-}
+      mask-image: none;
+      opacity: .6;
+    }
 
-.modal-body {
-  padding: 1.25rem;
-}
+    body.kawaii-mode .logo-dot,
+    body.kawaii-mode .status-dot {
+      background: #ff5f9e;
+      box-shadow: 0 0 14px #ff5f9e;
+    }
 
-.modal-hint {
-  margin-bottom: .8rem;
+    body.kawaii-mode .button-primary {
+      color: white;
+      background: #ff5f9e;
+    }
 
-  color: var(--text-dim);
-  font-size: .72rem;
-}
+    body.kawaii-mode .eyebrow {
+      color: #d85d91;
+      background: rgba(255,95,158,.10);
+      border-color: rgba(255,95,158,.18);
+    }
 
-.modal-log {
-  max-height: 190px;
+    body.kawaii-mode .skill-icon {
+      color: #ff5f9e;
+      background: rgba(255,95,158,.10);
+    }
 
-  margin-bottom: .75rem;
+    body.kawaii-mode .project::after {
+      background: rgba(255,95,158,.10);
+    }
 
-  overflow-y: auto;
+    /* =========================
+       RESPONSIVE
+    ========================= */
 
-  display: flex;
-  flex-direction: column;
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+      }
 
-  gap: .35rem;
-}
+      .hero {
+        min-height: 560px;
+        padding: 70px 0;
+      }
 
-.line {
-  color: var(--text);
+      .hero h1 {
+        letter-spacing: -3px;
+      }
 
-  font-size: .78rem;
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
 
-  overflow-wrap: anywhere;
-}
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
-.line.echo {
-  color: var(--text-dim);
-}
+      .contact-card {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
 
-.line.ok {
-  color: var(--green);
-}
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 24px, 1100px);
+      }
 
-.line.err {
-  color: var(--pink);
-}
+      .hero {
+        padding: 60px 0;
+      }
 
-.exfil-line {
-  opacity: 0;
+      .hero h1 {
+        font-size: clamp(3rem, 18vw, 5rem);
+      }
 
-  animation:
-    exfilAppear .25s ease forwards;
-}
+      .hero-description {
+        font-size: .94rem;
+      }
 
-@keyframes exfilAppear {
-  from {
-    opacity: 0;
-    transform: translateX(-5px);
-  }
+      .section {
+        padding: 65px 0;
+      }
 
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
 
-#snakeCanvas {
-  display: none;
+      .card,
+      .project {
+        padding: 22px;
+      }
 
-  width: min(240px,75vw);
+      .contact-card {
+        padding: 25px;
+      }
+    }
 
-  height: auto;
-
-  margin: 0 auto .75rem;
-
-  background: #0a0e14;
-
-  border: 1px solid var(--border);
-
-  border-radius: 6px;
-
-  image-rendering: pixelated;
-}
-
-#snakeControls {
-  display: none;
-
-  justify-content: center;
-
-  margin-bottom: .75rem;
-}
-
-.dpad {
-  display: grid;
-
-  grid-template-columns: repeat(3,38px);
-  grid-template-rows: repeat(3,38px);
-
-  gap: 4px;
-}
-
-.dpad-btn {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  background: #0a0e14;
-
-  border: 1px solid var(--border);
-
-  border-radius: 5px;
-
-  color: var(--green);
-
-  font-family: var(--font);
-
-  cursor: pointer;
-
-  touch-action: manipulation;
-}
-
-.dpad-btn:active {
-  background: var(--green-soft);
-
-  border-color: var(--green);
-}
-
-.modal-inputline {
-  display: flex;
-  align-items: center;
-
-  gap: .5rem;
-
-  padding-top: .75rem;
-
-  border-top: 1px solid var(--border);
-}
-
-.sym {
-  color: var(--green);
-}
-
-.modal-inputline input {
-  flex: 1;
-
-  min-width: 0;
-
-  background: transparent;
-
-  border: 0;
-  outline: 0;
-
-  color: var(--text);
-
-  font-family: var(--font);
-
-  font-size: .8rem;
-}
-
-.modal-inputline input::placeholder {
-  color: var(--text-dim);
-}
-
-body.kawaii-mode {
-  --bg: #fff0f6;
-  --panel: #fff8fc;
-  --panel-light: #ffe8f2;
-  --border: #ffc1da;
-
-  --text: #5d3a4b;
-  --text-dim: #b0718d;
-
-  --green: #ff77ad;
-  --green-soft: rgba(255,119,173,.16);
-
-  --orange: #c77dff;
-  --pink: #ff5f9e;
-  --blue: #7aa7ff;
-
-  background:
-    radial-gradient(
-      circle at 20% 10%,
-      rgba(255,154,196,.35),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 80% 20%,
-      rgba(199,125,255,.20),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 50% 100%,
-      rgba(255,214,230,.7),
-      transparent 45%
-    ),
-    #fff0f6;
-}
-
-body.kawaii-mode::before {
-  background-image:
-    radial-gradient(
-      circle,
-      rgba(255,119,173,.22) 2px,
-      transparent 3px
-    ),
-    radial-gradient(
-      circle,
-      rgba(199,125,255,.16) 2px,
-      transparent 3px
-    );
-
-  background-size:
-    32px 32px,
-    47px 47px;
-
-  background-position:
-    0 0,
-    15px 18px;
-
-  mask-image: none;
-
-  opacity: .65;
-}
-
-body.kawaii-mode .terminal {
-  background: rgba(255,248,252,.94);
-
-  border: 2px solid #ffc1da;
-
-  border-radius: 24px;
-
-  box-shadow:
-    0 30px 80px rgba(255,119,173,.18),
-    0 0 40px rgba(199,125,255,.12);
-}
-
-body.kawaii-mode .title-bar {
-  background:
-    linear-gradient(
-      90deg,
-      #ffd6e7,
-      #ffe6f1,
-      #eadcff
-    );
-
-  border-bottom: 2px solid #ffc1da;
-}
-
-body.kawaii-mode .window-title {
-  color: #a85f80;
-}
-
-body.kawaii-mode .screen {
-  position: relative;
-}
-
-body.kawaii-mode .screen::before {
-  content: "♡ romantic mode activated ♡";
-
-  display: block;
-
-  margin-bottom: 1rem;
-
-  color: #d85d91;
-
-  font-size: .68rem;
-
-  text-align: center;
-
-  letter-spacing: 1px;
-
-  animation:
-    kawaiiFloat 3s ease-in-out infinite;
-}
-
-@keyframes kawaiiFloat {
-  50% {
-    transform: translateY(-3px);
-  }
-}
-
-body.kawaii-mode .ascii-name {
-  color: #ff5f9e;
-
-  text-shadow:
-    0 0 15px rgba(255,95,158,.35),
-    0 0 30px rgba(199,125,255,.15);
-}
-
-body.kawaii-mode .ascii-name::before {
-  content: "♡ ";
-}
-
-body.kawaii-mode .ascii-name::after {
-  content: " ♡";
-}
-
-body.kawaii-mode .name-cursor,
-body.kawaii-mode .typing-cursor {
-  background: #ff77ad;
-
-  box-shadow:
-    0 0 12px rgba(255,119,173,.6);
-}
-
-body.kawaii-mode .field::before {
-  content: "♡";
-
-  color: #ff77ad;
-}
-
-body.kawaii-mode .field {
-  color: #b0718d;
-}
-
-body.kawaii-mode .output {
-  border-left-color: #ffb6d2;
-}
-
-body.kawaii-mode .pulse {
-  background: #ff77ad;
-
-  box-shadow:
-    0 0 12px #ff77ad;
-}
-
-body.kawaii-mode .links a:hover {
-  color: #ff5f9e;
-
-  border-color: #ff5f9e;
-}
-
-body.kawaii-mode .arrow {
-  color: #ff77ad;
-}
-
-body.kawaii-mode footer .tag {
-  color: #c77dff;
-}
-
-body.kawaii-mode .modal-terminal {
-  background: #fff8fc;
-
-  border: 2px solid #ffc1da;
-
-  box-shadow:
-    0 30px 90px rgba(255,95,158,.25);
-}
-
-body.kawaii-mode .modal-titlebar {
-  background:
-    linear-gradient(
-      90deg,
-      #ffd6e7,
-      #eadcff
-    );
-
-  border-bottom-color: #ffc1da;
-}
-
-body.kawaii-mode .modal-backdrop {
-  background: rgba(80,30,55,.35);
-}
-
-body.kawaii-mode .secret-btn {
-  color: #d85d91;
-}
-
-body.kawaii-mode .secret-btn::before {
-  content: "♡ ";
-}
-
-body.kawaii-mode .secret-btn::after {
-  content: " ♡";
-}
-
-body.kawaii-mode #snakeCanvas {
-  background: #fff0f6;
-
-  border-color: #ffb6d2;
-}
-
-body.theme-changing,
-body.theme-changing * {
-  transition:
-    background .45s ease,
-    color .35s ease,
-    border-color .45s ease,
-    box-shadow .45s ease !important;
-}
-
-@media (max-width:520px) {
-
-  body {
-    padding: 1rem .7rem 2rem;
-  }
-
-  .screen {
-    padding: 1.4rem 1.15rem 1.75rem;
-  }
-
-  .output {
-    font-size: .86rem;
-  }
-
-  .links a {
-    font-size: .76rem;
-
-    overflow-wrap: anywhere;
-  }
-
-  .modal-body {
-    padding: 1rem;
-  }
-
-}
-
-@media (prefers-reduced-motion:reduce) {
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-
-    transition-duration: .01ms !important;
-  }
-
-}
-
-</style>
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<main class="terminal">
+  <!-- =========================
+       NAVBAR
+  ========================== -->
 
-  <header class="title-bar">
+  <header>
+    <div class="container navbar">
 
-    <div class="window-dots">
-      <span class="dot red"></span>
-      <span class="dot yellow"></span>
-      <span class="dot green"></span>
-    </div>
+      <a href="#home" class="logo">
+        <span class="logo-dot"></span>
+        Kaezuria
+      </a>
 
-    <span class="window-title">
-      guest@kaezuria: ~
-    </span>
-
-  </header>
-
-  <div class="screen">
-
-    <div class="prompt">
-
-      <span class="user">
-        guest@kaezuria
-      </span>
-
-      <span>:</span>
-
-      <span class="path">
-        ~
-      </span>
-
-      <span class="command">
-        $
-      </span>
-
-      <span id="typedCommand"></span>
-
-      <span class="typing-cursor"></span>
-
-    </div>
-
-    <h1 class="ascii-name" id="siteName">
-
-      Kaezuria
-
-      <span class="name-cursor"></span>
-
-    </h1>
-
-    <div class="handle" id="siteHandle">
-    </div>
-
-    <section class="content-section">
-
-      <div class="field">
-        about
-      </div>
-
-      <p class="output">
-
-        I'm Kaezuria, 15 years old.
-        I'm a first-year high school student studying cybersecurity,
-        and my goal is to become a cybersecurity engineer one day.
-
-      </p>
-
-    </section>
-
-    <section class="content-section">
-
-      <div class="field">
-        status
-      </div>
-
-      <div class="status-line">
-
-        <span class="pulse"></span>
-
-        <span>
-          currently learning — open to connect
-        </span>
-
-      </div>
-
-    </section>
-
-    <section class="content-section">
-
-      <div class="field">
-        contact
-      </div>
-
-      <nav class="links">
-
-        <a href="mailto:syntaxworks.dev@gmail.com">
-
-          <span class="arrow">›</span>
-
-          email · syntaxworks.dev@gmail.com
-
-        </a>
-
-        <a
-          href="https://github.com/Kaezuria"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-
-          <span class="arrow">›</span>
-
-          github · /Kaezuria
-
-        </a>
-
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
       </nav>
 
-    </section>
-
-    <section class="content-section">
-
-      <div
-        class="field comments-toggle closed"
-        id="commentsToggle"
-        role="button"
-        tabindex="0"
-        aria-expanded="false"
+      <a
+        href="https://github.com/Kaezuria"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="nav-contact"
       >
+        GitHub ↗
+      </a>
 
-        <span>
-          comments
-        </span>
+    </div>
+  </header>
 
-        <span class="chevron">
-          ▾
-        </span>
 
-      </div>
+  <main>
 
-      <div id="commentsBox" class="closed">
+    <!-- =========================
+         HERO
+    ========================== -->
 
-        <script
-          src="https://giscus.app/client.js"
-          data-repo="Kaezuria/Kaezuria.github.io"
-          data-repo-id="R_kgDOUBgR2g"
-          data-category="General"
-          data-category-id="DIC_kwDOUBgR2s4DEFNm"
-          data-mapping="pathname"
-          data-strict="0"
-          data-reactions-enabled="1"
-          data-emit-metadata="0"
-          data-input-position="top"
-          data-theme="noborder_dark"
-          data-lang="fr"
-          crossorigin="anonymous"
-          async>
-        </script>
+    <section class="hero" id="home">
+
+      <div class="container">
+
+        <div class="hero-content">
+
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            currently learning cybersecurity
+          </div>
+
+          <h1>
+            Hi, I'm <span>Kaezuria.</span>
+          </h1>
+
+          <p class="hero-description">
+            Cybersecurity student, developer and Linux enthusiast.
+            I like building things, experimenting with code and learning
+            how technology works from the inside.
+          </p>
+
+          <div class="hero-actions">
+
+            <a
+              href="#projects"
+              class="button button-primary"
+            >
+              View my projects →
+            </a>
+
+            <a
+              href="https://github.com/Kaezuria"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="button button-secondary"
+            >
+              GitHub ↗
+            </a>
+
+          </div>
+
+        </div>
 
       </div>
 
     </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section class="section" id="about">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label">// about</div>
+
+          <h2>A little bit about me.</h2>
+
+          <p>
+            A quick introduction to who I am, what I'm learning
+            and where I'm heading.
+          </p>
+        </div>
+
+
+        <div class="about-grid">
+
+          <article class="card">
+
+            <h3 class="card-title">
+              Cybersecurity & development
+            </h3>
+
+            <p>
+              I'm Kaezuria, 15 years old and currently studying
+              cybersecurity in high school. I'm interested in
+              cybersecurity, programming, Linux and the way
+              computers and networks work.
+            </p>
+
+            <br>
+
+            <p>
+              My long-term goal is to become a cybersecurity engineer
+              and keep improving through personal projects and
+              experimentation.
+            </p>
+
+          </article>
+
+
+          <article class="card status-card">
+
+            <div>
+
+              <div class="status">
+                <span class="status-dot"></span>
+                Online & learning
+              </div>
+
+              <p class="small">
+                Currently learning new things,
+                building projects and exploring
+                cybersecurity.
+              </p>
+
+            </div>
+
+            <p class="small">
+              Based in France 🇫🇷
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SKILLS
+    ========================== -->
+
+    <section class="section" id="skills">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="section-label">// skills</div>
+
+          <h2>Things I like working with.</h2>
+
+          <p>
+            Technologies and areas I'm currently learning
+            or experimenting with.
+          </p>
+
+        </div>
+
+
+        <div class="skills-grid">
+
+          <div class="skill">
+            <div class="skill-icon">Py</div>
+            <strong>Python</strong>
+            <span>Programming & automation</span>
+          </div>
+
+          <div class="skill">
+            <div class="skill-icon">C++</div>
+            <strong>C++</strong>
+            <span>Games & low-level projects</span>
+          </div>
+
+          <div class="skill">
+            <div class="skill-icon">JS</div>
+            <strong>JavaScript</strong>
+            <span>Web development</span>
+          </div>
+
+          <div class="skill">
+            <div class="skill-icon">⌘</div>
+            <strong>Linux</strong>
+            <span>Systems & experimentation</span>
+          </div>
+
+          <div class="skill">
+            <div class="skill-icon">SEC</div>
+            <strong>Cybersecurity</strong>
+            <span>Learning & labs</span>
+          </div>
+
+          <div class="skill">
+            <div class="skill-icon">Git</div>
+            <strong>Git / GitHub</strong>
+            <span>Projects & version control</span>
+          </div>
+
+          <div class="skill">
+            <div class="skill-icon">WEB</div>
+            <strong>HTML / CSS</strong>
+            <span>Web interfaces</span>
+          </div>
+
+          <div class="skill">
+            <div class="skill-icon">🎮</div>
+            <strong>Game Dev</strong>
+            <span>Small experiments & games</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROJECTS
+    ========================== -->
+
+    <section class="section" id="projects">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="section-label">// projects</div>
+
+          <h2>Stuff I've been building.</h2>
+
+          <p>
+            A selection of projects and experiments.
+            More coming soon.
+          </p>
+
+        </div>
+
+
+        <div class="projects-grid">
+
+          <a
+            href="https://github.com/Kaezuria"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project"
+          >
+
+            <div class="project-number">
+              PROJECT_01
+            </div>
+
+            <h3>Cybersecurity Labs</h3>
+
+            <p>
+              Experiments and learning projects around
+              cybersecurity, systems and networking.
+            </p>
+
+            <div class="project-tags">
+              <span class="tag">security</span>
+              <span class="tag">linux</span>
+              <span class="tag">networking</span>
+            </div>
+
+          </a>
+
+
+          <a
+            href="https://github.com/Kaezuria"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project"
+          >
+
+            <div class="project-number">
+              PROJECT_02
+            </div>
+
+            <h3>Game Experiments</h3>
+
+            <p>
+              Small games and programming experiments
+              made while learning different technologies.
+            </p>
+
+            <div class="project-tags">
+              <span class="tag">C++</span>
+              <span class="tag">Python</span>
+              <span class="tag">game-dev</span>
+            </div>
+
+          </a>
+
+
+          <a
+            href="https://github.com/Kaezuria"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project"
+          >
+
+            <div class="project-number">
+              PROJECT_03
+            </div>
+
+            <h3>Web Projects</h3>
+
+            <p>
+              Websites, interfaces and experiments with
+              HTML, CSS and JavaScript.
+            </p>
+
+            <div class="project-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+
+          </a>
+
+
+          <div class="project">
+
+            <div class="project-number">
+              PROJECT_04
+            </div>
+
+            <h3>More coming soon</h3>
+
+            <p>
+              I'm constantly working on new ideas.
+              This section will grow over time.
+            </p>
+
+            <div class="project-tags">
+              <span class="tag">WIP</span>
+              <span class="tag">learning</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section class="section" id="contact">
+
+      <div class="container">
+
+        <div class="contact-card">
+
+          <div>
+
+            <h2>Want to connect?</h2>
+
+            <p>
+              You can find me on GitHub or send me an email.
+              I'm always interested in meeting other people
+              interested in tech and cybersecurity.
+            </p>
+
+          </div>
+
+          <div class="hero-actions">
+
+            <a
+              href="mailto:syntaxworks.dev@gmail.com"
+              class="button button-primary"
+            >
+              Email me
+            </a>
+
+            <a
+              href="https://github.com/Kaezuria"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="button button-secondary"
+            >
+              GitHub ↗
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         COMMENTS
+    ========================== -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="section-label">// community</div>
+
+          <h2>Leave a comment.</h2>
+
+          <p>
+            Feel free to leave a message or say hi.
+          </p>
+
+        </div>
+
+        <div class="comments-box">
+
+          <script
+  src="https://giscus.app/client.js"
+  data-repo="Kaezuria/Kaezuria.github.io"
+  data-repo-id="R_kgDOUBgR2g"
+  data-category="General"
+  data-category-id="DIC_kwDOUBgR2s4DEFNm"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="noborder_dark"
+  data-lang="fr"
+  crossorigin="anonymous"
+  async>
+</script>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       SECRET EASTER EGG
+  ========================== -->
+
+  <div class="secret-wrap">
+
+    <button
+      class="secret-btn"
+      id="secretButton"
+      type="button"
+    >
+      [ ??? ]
+    </button>
 
   </div>
 
-</main>
 
-<div class="secret-wrap">
+  <footer>
 
-  <button
-    class="secret-btn"
-    id="secretButton"
-    type="button"
+    © 2026 Kaezuria ·
+
+    <strong>keep learning</strong>
+
+  </footer>
+
+
+  <!-- =========================
+       HIDDEN TERMINAL
+  ========================== -->
+
+  <div
+    class="modal-backdrop"
+    id="secretModal"
+    role="dialog"
+    aria-modal="true"
   >
-    [ ??? ]
-  </button>
 
-</div>
+    <div class="modal-terminal">
 
-<footer>
+      <header class="modal-titlebar">
 
-  © 2026 Kaezuria
+        <div class="window-dots">
 
-  <span class="tag">
-    // keep learning
-  </span>
-
-</footer>
-
-<div
-  class="modal-backdrop"
-  id="secretModal"
-  role="dialog"
-  aria-modal="true"
->
-
-  <div class="modal-terminal">
-
-    <header class="modal-titlebar">
-
-      <div class="window-dots">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
-      </div>
-
-      <span class="window-title">
-        hidden-shell
-      </span>
-
-      <button
-        class="modal-close"
-        id="modalClose"
-        type="button"
-      >
-        [x]
-      </button>
-
-    </header>
-
-    <div class="modal-body">
-
-      <p class="modal-hint">
-        Type a command ("help" for the list)
-      </p>
-
-      <div
-        class="modal-log"
-        id="modalLog"
-      >
-
-        <div class="line">
-
-          Welcome.
-          Type
-          <span class="ok">help</span>
-          to see what you can do here.
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
 
         </div>
 
-      </div>
-
-      <canvas
-        id="snakeCanvas"
-        width="240"
-        height="240"
-      ></canvas>
-
-      <div id="snakeControls">
-
-        <div class="dpad">
-
-          <span></span>
-
-          <button
-            class="dpad-btn"
-            data-dir="up"
-            type="button"
-          >
-            ▲
-          </button>
-
-          <span></span>
-
-          <button
-            class="dpad-btn"
-            data-dir="left"
-            type="button"
-          >
-            ◀
-          </button>
-
-          <span></span>
-
-          <button
-            class="dpad-btn"
-            data-dir="right"
-            type="button"
-          >
-            ▶
-          </button>
-
-          <span></span>
-
-          <button
-            class="dpad-btn"
-            data-dir="down"
-            type="button"
-          >
-            ▼
-          </button>
-
-          <span></span>
-
-        </div>
-
-      </div>
-
-      <div class="modal-inputline">
-
-        <span class="sym">
-          $
+        <span class="window-title">
+          hidden-shell
         </span>
 
-        <input
-          type="text"
-          id="modalInput"
-          placeholder="type a command..."
-          autocomplete="off"
-          autocapitalize="off"
-          spellcheck="false"
+        <button
+          class="modal-close"
+          id="modalClose"
+          type="button"
         >
+          [x]
+        </button>
+
+      </header>
+
+
+      <div class="modal-body">
+
+        <p class="modal-hint">
+          Type a command ("help" for the list)
+        </p>
+
+
+        <div
+          class="modal-log"
+          id="modalLog"
+        >
+
+          <div class="line">
+            Welcome.
+            Type
+            <span class="ok">help</span>
+            to see what you can do here.
+          </div>
+
+        </div>
+
+
+        <canvas
+          id="snakeCanvas"
+          width="240"
+          height="240"
+        ></canvas>
+
+
+        <div id="snakeControls">
+
+          <div class="dpad">
+
+            <span></span>
+
+            <button
+              class="dpad-btn"
+              data-dir="up"
+              type="button"
+            >
+              ▲
+            </button>
+
+            <span></span>
+
+            <button
+              class="dpad-btn"
+              data-dir="left"
+              type="button"
+            >
+              ◀
+            </button>
+
+            <span></span>
+
+            <button
+              class="dpad-btn"
+              data-dir="right"
+              type="button"
+            >
+              ▶
+            </button>
+
+            <span></span>
+
+            <button
+              class="dpad-btn"
+              data-dir="down"
+              type="button"
+            >
+              ▼
+            </button>
+
+            <span></span>
+
+          </div>
+
+        </div>
+
+
+        <div class="modal-inputline">
+
+          <span class="sym">$</span>
+
+          <input
+            type="text"
+            id="modalInput"
+            placeholder="type a command..."
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+          >
+
+        </div>
 
       </div>
 
@@ -1392,900 +1791,777 @@ body.theme-changing * {
 
   </div>
 
-</div>
 
-<script>
+  <script>
 
-const COMMANDS = {
+    /* =========================
+       SECRET COMMANDS
+    ========================== */
 
-  music: {
-    url: "https://www.youtube.com/@prod.avorkk",
-    message: "Opening YouTube channel..."
-  },
+    const COMMANDS = {
 
-  short: {
-    url: "https://www.tiktok.com/@shn_322",
-    message: "Opening TikTok..."
-  },
+      music: {
+        url: "https://www.youtube.com/@prod.avorkk",
+        message: "Opening YouTube channel..."
+      },
 
-  exfil: {
-    url: "https://x.com/Yoruhane",
-    message: "Initializing secure channel..."
-  }
+      short: {
+        url: "https://www.tiktok.com/@shn_322",
+        message: "Opening TikTok..."
+      },
 
-};
+      exfil: {
+        url: "https://x.com/Yoruhane",
+        message: "Initializing secure channel..."
+      }
 
-const typedCommand =
-  document.getElementById("typedCommand");
+    };
 
-const siteName =
-  document.getElementById("siteName");
 
-const siteHandle =
-  document.getElementById("siteHandle");
+    const modal =
+      document.getElementById("secretModal");
 
-const sections =
-  document.querySelectorAll(".content-section");
+    const input =
+      document.getElementById("modalInput");
 
-const modal =
-  document.getElementById("secretModal");
+    const log =
+      document.getElementById("modalLog");
 
-const input =
-  document.getElementById("modalInput");
+    const secretButton =
+      document.getElementById("secretButton");
 
-const log =
-  document.getElementById("modalLog");
+    const modalClose =
+      document.getElementById("modalClose");
 
-const secretButton =
-  document.getElementById("secretButton");
 
-const modalClose =
-  document.getElementById("modalClose");
+    /* =========================
+       MODAL
+    ========================== */
 
-const commentsToggle =
-  document.getElementById("commentsToggle");
+    function openSecretTerminal() {
 
-const commentsBox =
-  document.getElementById("commentsBox");
+      modal.style.display = "flex";
 
-const bootCommand = "whoami";
+      requestAnimationFrame(() => {
+        modal.classList.add("open");
+      });
 
-function typeBootCommand() {
-
-  let index = 0;
-
-  const timer = setInterval(() => {
-
-    typedCommand.textContent =
-      bootCommand.slice(0,index + 1);
-
-    index++;
-
-    if(index >= bootCommand.length) {
-
-      clearInterval(timer);
+      input.value = "";
 
       setTimeout(() => {
-
-        document
-          .querySelector(".typing-cursor")
-          .style.display = "none";
-
-        revealSite();
-
-      },450);
+        input.focus();
+      }, 150);
 
     }
 
-  },90);
 
-}
+    function closeSecretTerminal() {
 
-function revealSite() {
+      if (gameActive) {
+        endSnake();
+      }
 
-  siteName.classList.add("show");
+      modal.classList.remove("open");
 
-  setTimeout(() => {
-
-    siteHandle.classList.add("show");
-
-  },250);
-
-  sections.forEach((section,index) => {
-
-    setTimeout(() => {
-
-      section.classList.add("show");
-
-    },500 + index * 180);
-
-  });
-
-}
-
-function toggleComments() {
-
-  const closed =
-    commentsBox.classList.toggle("closed");
-
-  commentsToggle.classList.toggle(
-    "closed",
-    closed
-  );
-
-  commentsToggle.setAttribute(
-    "aria-expanded",
-    String(!closed)
-  );
-
-}
-
-commentsToggle.addEventListener(
-  "click",
-  toggleComments
-);
-
-commentsToggle.addEventListener(
-  "keydown",
-  event => {
-
-    if(
-      event.key === "Enter" ||
-      event.key === " "
-    ) {
-
-      event.preventDefault();
-
-      toggleComments();
+      setTimeout(() => {
+        modal.style.display = "none";
+      }, 250);
 
     }
 
-  }
-);
 
-function openSecretTerminal() {
-
-  modal.style.display = "flex";
-
-  requestAnimationFrame(() => {
-
-    modal.classList.add("open");
-
-  });
-
-  input.value = "";
-
-  setTimeout(() => {
-
-    input.focus();
-
-  },150);
-
-}
-
-function closeSecretTerminal() {
-
-  if(gameActive) {
-
-    endSnake();
-
-  }
-
-  modal.classList.remove("open");
-
-  setTimeout(() => {
-
-    modal.style.display = "none";
-
-  },250);
-
-}
-
-secretButton.addEventListener(
-  "click",
-  openSecretTerminal
-);
-
-modalClose.addEventListener(
-  "click",
-  closeSecretTerminal
-);
-
-modal.addEventListener(
-  "click",
-  event => {
-
-    if(event.target === modal) {
-
-      closeSecretTerminal();
-
-    }
-
-  }
-);
-
-function addLine(text,type="") {
-
-  const line =
-    document.createElement("div");
-
-  line.className =
-    `line ${type}`.trim();
-
-  line.textContent = text;
-
-  log.appendChild(line);
-
-  log.scrollTop =
-    log.scrollHeight;
-
-}
-
-function activateKawaiiMode() {
-
-  if(document.body.classList.contains("kawaii-mode")) {
-
-    addLine(
-      "♡ kawaii mode is already active ♡",
-      "ok"
+    secretButton.addEventListener(
+      "click",
+      openSecretTerminal
     );
 
-    return;
 
-  }
-
-  document.body.classList.add("theme-changing");
-
-  document.body.classList.add("kawaii-mode");
-
-  addLine(
-    "♡ kawaii protocol initialized...",
-    "ok"
-  );
-
-  setTimeout(() => {
-
-    addLine(
-      "♡ loading romance anime aesthetics...",
-      "ok"
+    modalClose.addEventListener(
+      "click",
+      closeSecretTerminal
     );
 
-  },350);
 
-  setTimeout(() => {
+    modal.addEventListener(
+      "click",
+      event => {
 
-    addLine(
-      "♡ sakura particles detected...",
-      "ok"
+        if (event.target === modal) {
+          closeSecretTerminal();
+        }
+
+      }
     );
 
-  },700);
 
-  setTimeout(() => {
+    /* =========================
+       TERMINAL LOG
+    ========================== */
 
-    addLine(
-      "♡ KAWAII MODE ACTIVATED ♡",
-      "ok"
-    );
-
-  },1050);
-
-  setTimeout(() => {
-
-    document.body.classList.remove(
-      "theme-changing"
-    );
-
-  },1500);
-
-}
-
-function deactivateKawaiiMode() {
-
-  if(!document.body.classList.contains("kawaii-mode")) {
-
-    addLine(
-      "terminal is already in cyber mode.",
-      "ok"
-    );
-
-    return;
-
-  }
-
-  document.body.classList.add("theme-changing");
-
-  addLine(
-    "shutting down kawaii protocol...",
-    "ok"
-  );
-
-  setTimeout(() => {
-
-    document.body.classList.remove("kawaii-mode");
-
-  },300);
-
-  setTimeout(() => {
-
-    addLine(
-      "cyber terminal theme restored.",
-      "ok"
-    );
-
-  },550);
-
-  setTimeout(() => {
-
-    document.body.classList.remove(
-      "theme-changing"
-    );
-
-  },1000);
-
-}
-
-function runExfil() {
-
-  input.disabled = true;
-
-  const sequence = [
-
-    {
-      text: "[+] initializing secure channel...",
-      delay: 0
-    },
-
-    {
-      text: "[+] resolving target: Yoruhane",
-      delay: 500
-    },
-
-    {
-      text: "[+] encrypting connection...",
-      delay: 1000
-    },
-
-    {
-      text: "[+] connection established",
-      delay: 1500
-    },
-
-    {
-      text: "[+] redirecting to @Yoruhane...",
-      delay: 2000
-    }
-
-  ];
-
-  sequence.forEach(step => {
-
-    setTimeout(() => {
+    function addLine(text, type = "") {
 
       const line =
         document.createElement("div");
 
       line.className =
-        "line ok exfil-line";
+        `line ${type}`.trim();
 
-      line.textContent =
-        step.text;
+      line.textContent = text;
 
       log.appendChild(line);
 
       log.scrollTop =
         log.scrollHeight;
 
-    },step.delay);
-
-  });
-
-  setTimeout(() => {
-
-    window.open(
-      "https://x.com/Yoruhane",
-      "_blank",
-      "noopener,noreferrer"
-    );
-
-    input.disabled = false;
-
-    input.value = "";
-
-    input.focus();
-
-  },2600);
-
-}
-
-const canvas =
-  document.getElementById("snakeCanvas");
-
-const ctx =
-  canvas.getContext("2d");
-
-const controls =
-  document.getElementById("snakeControls");
-
-const CELL = 12;
-
-const COLS =
-  canvas.width / CELL;
-
-const ROWS =
-  canvas.height / CELL;
-
-let snake = [];
-
-let direction = {
-  x: 1,
-  y: 0
-};
-
-let nextDirection = {
-  x: 1,
-  y: 0
-};
-
-let food = {};
-
-let score = 0;
-
-let gameInterval = null;
-
-let gameActive = false;
-
-function placeFood() {
-
-  let newFood;
-
-  do {
-
-    newFood = {
-
-      x: Math.floor(
-        Math.random() * COLS
-      ),
-
-      y: Math.floor(
-        Math.random() * ROWS
-      )
-
-    };
-
-  } while(
-    snake.some(
-      part =>
-        part.x === newFood.x &&
-        part.y === newFood.y
-    )
-  );
-
-  food = newFood;
-
-}
-
-function drawSnake() {
-
-  const kawaii =
-    document.body.classList.contains("kawaii-mode");
-
-  ctx.fillStyle =
-    kawaii
-      ? "#fff0f6"
-      : "#0a0e14";
-
-  ctx.fillRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-  snake.forEach((part,index) => {
-
-    ctx.globalAlpha =
-      index === 0 ? 1 : .8;
-
-    ctx.fillStyle =
-      kawaii
-        ? "#ff77ad"
-        : "#6fe3a1";
-
-    ctx.fillRect(
-      part.x * CELL,
-      part.y * CELL,
-      CELL - 1,
-      CELL - 1
-    );
-
-  });
-
-  ctx.globalAlpha = 1;
-
-  ctx.fillStyle =
-    kawaii
-      ? "#c77dff"
-      : "#ffb454";
-
-  ctx.fillRect(
-    food.x * CELL,
-    food.y * CELL,
-    CELL - 1,
-    CELL - 1
-  );
-
-}
-
-function stepSnake() {
-
-  direction =
-    nextDirection;
-
-  const head = {
-
-    x:
-      snake[0].x +
-      direction.x,
-
-    y:
-      snake[0].y +
-      direction.y
-
-  };
-
-  const hitWall =
-    head.x < 0 ||
-    head.x >= COLS ||
-    head.y < 0 ||
-    head.y >= ROWS;
-
-  const hitSelf =
-    snake.some(
-      part =>
-        part.x === head.x &&
-        part.y === head.y
-    );
-
-  if(hitWall || hitSelf) {
-
-    endSnake();
-
-    return;
-
-  }
-
-  snake.unshift(head);
-
-  if(
-    head.x === food.x &&
-    head.y === food.y
-  ) {
-
-    score++;
-
-    placeFood();
-
-  } else {
-
-    snake.pop();
-
-  }
-
-  drawSnake();
-
-}
-
-function startSnake() {
-
-  if(gameActive) return;
-
-  gameActive = true;
-
-  canvas.style.display =
-    "block";
-
-  controls.style.display =
-    "flex";
-
-  input.disabled = true;
-
-  snake = [
-    {
-      x: 5,
-      y: 5
     }
-  ];
 
-  direction = {
-    x: 1,
-    y: 0
-  };
 
-  nextDirection = {
-    x: 1,
-    y: 0
-  };
+    /* =========================
+       KAWAII MODE
+    ========================== */
 
-  score = 0;
+    function activateKawaiiMode() {
 
-  placeFood();
+      if (
+        document.body.classList.contains(
+          "kawaii-mode"
+        )
+      ) {
 
-  drawSnake();
+        addLine(
+          "♡ kawaii mode is already active ♡",
+          "ok"
+        );
 
-  clearInterval(gameInterval);
+        return;
+      }
 
-  gameInterval =
-    setInterval(
-      stepSnake,
-      150
-    );
+      document.body.classList.add(
+        "kawaii-mode"
+      );
 
-  addLine(
-    "snake started — arrow keys or touch controls, ESC to quit",
-    "ok"
-  );
+      addLine(
+        "♡ kawaii mode activated ♡",
+        "ok"
+      );
 
-}
+    }
 
-function endSnake() {
 
-  if(!gameActive) return;
+    function deactivateKawaiiMode() {
 
-  clearInterval(gameInterval);
+      if (
+        !document.body.classList.contains(
+          "kawaii-mode"
+        )
+      ) {
 
-  gameInterval = null;
+        addLine(
+          "normal mode is already active.",
+          "ok"
+        );
 
-  gameActive = false;
+        return;
+      }
 
-  canvas.style.display =
-    "none";
+      document.body.classList.remove(
+        "kawaii-mode"
+      );
 
-  controls.style.display =
-    "none";
+      addLine(
+        "normal mode restored.",
+        "ok"
+      );
 
-  input.disabled = false;
+    }
 
-  addLine(
-    "game over — score: " + score,
-    "err"
-  );
 
-  input.focus();
+    /* =========================
+       EXFIL EASTER EGG
+    ========================== */
 
-}
+    function runExfil() {
 
-function setSnakeDirection(name) {
+      input.disabled = true;
 
-  if(!gameActive) return;
+      const sequence = [
 
-  const directions = {
+        "[+] initializing secure channel...",
 
-    up: {
-      x: 0,
-      y: -1
-    },
+        "[+] resolving target: Yoruhane",
 
-    down: {
-      x: 0,
-      y: 1
-    },
+        "[+] encrypting connection...",
 
-    left: {
-      x: -1,
-      y: 0
-    },
+        "[+] connection established",
 
-    right: {
+        "[+] redirecting to @Yoruhane..."
+
+      ];
+
+      sequence.forEach(
+        (message, index) => {
+
+          setTimeout(() => {
+
+            addLine(
+              message,
+              "ok"
+            );
+
+          }, index * 500);
+
+        }
+      );
+
+
+      setTimeout(() => {
+
+        window.open(
+          "https://x.com/Yoruhane",
+          "_blank",
+          "noopener,noreferrer"
+        );
+
+        input.disabled = false;
+        input.value = "";
+        input.focus();
+
+      }, 2600);
+
+    }
+
+
+    /* =========================
+       SNAKE
+    ========================== */
+
+    const canvas =
+      document.getElementById("snakeCanvas");
+
+    const ctx =
+      canvas.getContext("2d");
+
+    const controls =
+      document.getElementById("snakeControls");
+
+
+    const CELL = 12;
+
+    const COLS =
+      canvas.width / CELL;
+
+    const ROWS =
+      canvas.height / CELL;
+
+
+    let snake = [];
+
+    let direction = {
       x: 1,
       y: 0
+    };
+
+    let nextDirection = {
+      x: 1,
+      y: 0
+    };
+
+    let food = {};
+
+    let score = 0;
+
+    let gameInterval = null;
+
+    let gameActive = false;
+
+
+    function placeFood() {
+
+      let newFood;
+
+      do {
+
+        newFood = {
+          x: Math.floor(
+            Math.random() * COLS
+          ),
+
+          y: Math.floor(
+            Math.random() * ROWS
+          )
+        };
+
+      } while (
+        snake.some(
+          part =>
+            part.x === newFood.x &&
+            part.y === newFood.y
+        )
+      );
+
+      food = newFood;
+
     }
 
-  };
 
-  const newDirection =
-    directions[name];
+    function drawSnake() {
 
-  if(!newDirection) return;
+      const kawaii =
+        document.body.classList.contains(
+          "kawaii-mode"
+        );
 
-  const reverse =
-    newDirection.x === -direction.x &&
-    newDirection.y === -direction.y;
 
-  if(!reverse) {
+      ctx.fillStyle =
+        kawaii
+          ? "#fff0f6"
+          : "#0a0e14";
 
-    nextDirection =
-      newDirection;
 
-  }
+      ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
 
-}
 
-document
-  .querySelectorAll(".dpad-btn")
-  .forEach(button => {
+      snake.forEach(
+        (part, index) => {
 
-    button.addEventListener(
-      "click",
-      () => {
+          ctx.globalAlpha =
+            index === 0 ? 1 : .8;
+
+          ctx.fillStyle =
+            kawaii
+              ? "#ff77ad"
+              : "#6fe3a1";
+
+          ctx.fillRect(
+            part.x * CELL,
+            part.y * CELL,
+            CELL - 1,
+            CELL - 1
+          );
+
+        }
+      );
+
+
+      ctx.globalAlpha = 1;
+
+      ctx.fillStyle =
+        kawaii
+          ? "#c77dff"
+          : "#ffb454";
+
+
+      ctx.fillRect(
+        food.x * CELL,
+        food.y * CELL,
+        CELL - 1,
+        CELL - 1
+      );
+
+    }
+
+
+    function stepSnake() {
+
+      direction =
+        nextDirection;
+
+
+      const head = {
+
+        x:
+          snake[0].x +
+          direction.x,
+
+        y:
+          snake[0].y +
+          direction.y
+
+      };
+
+
+      const hitWall =
+        head.x < 0 ||
+        head.x >= COLS ||
+        head.y < 0 ||
+        head.y >= ROWS;
+
+
+      const hitSelf =
+        snake.some(
+          part =>
+            part.x === head.x &&
+            part.y === head.y
+        );
+
+
+      if (hitWall || hitSelf) {
+
+        endSnake();
+
+        return;
+      }
+
+
+      snake.unshift(head);
+
+
+      if (
+        head.x === food.x &&
+        head.y === food.y
+      ) {
+
+        score++;
+
+        placeFood();
+
+      } else {
+
+        snake.pop();
+
+      }
+
+
+      drawSnake();
+
+    }
+
+
+    function startSnake() {
+
+      if (gameActive) return;
+
+      gameActive = true;
+
+      canvas.style.display = "block";
+      controls.style.display = "flex";
+
+      input.disabled = true;
+
+
+      snake = [
+        {
+          x: 5,
+          y: 5
+        }
+      ];
+
+
+      direction = {
+        x: 1,
+        y: 0
+      };
+
+
+      nextDirection = {
+        x: 1,
+        y: 0
+      };
+
+
+      score = 0;
+
+      placeFood();
+
+      drawSnake();
+
+
+      clearInterval(gameInterval);
+
+
+      gameInterval =
+        setInterval(
+          stepSnake,
+          150
+        );
+
+
+      addLine(
+        "snake started — arrow keys or touch controls, ESC to quit",
+        "ok"
+      );
+
+    }
+
+
+    function endSnake() {
+
+      if (!gameActive) return;
+
+
+      clearInterval(
+        gameInterval
+      );
+
+      gameInterval = null;
+
+      gameActive = false;
+
+
+      canvas.style.display =
+        "none";
+
+      controls.style.display =
+        "none";
+
+      input.disabled =
+        false;
+
+
+      addLine(
+        "game over — score: " + score,
+        "err"
+      );
+
+
+      input.focus();
+
+    }
+
+
+    function setSnakeDirection(name) {
+
+      if (!gameActive) return;
+
+
+      const directions = {
+
+        up: {
+          x: 0,
+          y: -1
+        },
+
+        down: {
+          x: 0,
+          y: 1
+        },
+
+        left: {
+          x: -1,
+          y: 0
+        },
+
+        right: {
+          x: 1,
+          y: 0
+        }
+
+      };
+
+
+      const newDirection =
+        directions[name];
+
+
+      if (!newDirection) return;
+
+
+      const reverse =
+        newDirection.x === -direction.x &&
+        newDirection.y === -direction.y;
+
+
+      if (!reverse) {
+
+        nextDirection =
+          newDirection;
+
+      }
+
+    }
+
+
+    document
+      .querySelectorAll(".dpad-btn")
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            setSnakeDirection(
+              button.dataset.dir
+            );
+
+          }
+        );
+
+      });
+
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Escape" &&
+          gameActive
+        ) {
+
+          event.preventDefault();
+
+          endSnake();
+
+          return;
+        }
+
+
+        if (
+          event.key === "Escape" &&
+          modal.classList.contains("open") &&
+          !gameActive
+        ) {
+
+          closeSecretTerminal();
+
+          return;
+        }
+
+
+        if (!gameActive) return;
+
+
+        const keys = {
+
+          ArrowUp: "up",
+          ArrowDown: "down",
+          ArrowLeft: "left",
+          ArrowRight: "right"
+
+        };
+
+
+        const directionName =
+          keys[event.key];
+
+
+        if (!directionName) return;
+
+
+        event.preventDefault();
+
 
         setSnakeDirection(
-          button.dataset.dir
+          directionName
         );
 
       }
     );
 
-  });
 
-document.addEventListener(
-  "keydown",
-  event => {
+    /* =========================
+       COMMAND INPUT
+    ========================== */
 
-    if(
-      event.key === "Escape" &&
-      gameActive
-    ) {
+    input.addEventListener(
+      "keydown",
+      event => {
 
-      event.preventDefault();
+        if (event.key !== "Enter") {
+          return;
+        }
 
-      endSnake();
 
-      return;
+        const raw =
+          input.value.trim();
 
-    }
 
-    if(
-      event.key === "Escape" &&
-      modal.classList.contains("open") &&
-      !gameActive
-    ) {
+        if (!raw) return;
 
-      closeSecretTerminal();
 
-      return;
+        addLine(
+          "$ " + raw,
+          "echo"
+        );
 
-    }
 
-    if(!gameActive) return;
+        const command =
+          raw.toLowerCase();
 
-    const keys = {
 
-      ArrowUp: "up",
-      ArrowDown: "down",
-      ArrowLeft: "left",
-      ArrowRight: "right"
+        if (command === "help") {
 
-    };
+          addLine(
+            "available commands: help, music, short, exfil, snake, kawaii, normal, hacker, clear",
+            "ok"
+          );
 
-    const directionName =
-      keys[event.key];
+        }
 
-    if(!directionName) return;
+        else if (command === "clear") {
 
-    event.preventDefault();
+          log.replaceChildren();
 
-    setSnakeDirection(
-      directionName
+        }
+
+        else if (command === "snake") {
+
+          startSnake();
+
+        }
+
+        else if (command === "kawaii") {
+
+          activateKawaiiMode();
+
+        }
+
+        else if (
+          command === "normal" ||
+          command === "hacker"
+        ) {
+
+          deactivateKawaiiMode();
+
+        }
+
+        else if (command === "exfil") {
+
+          runExfil();
+
+        }
+
+        else if (COMMANDS[command]) {
+
+          const selected =
+            COMMANDS[command];
+
+
+          addLine(
+            selected.message,
+            "ok"
+          );
+
+
+          window.open(
+            selected.url,
+            "_blank",
+            "noopener,noreferrer"
+          );
+
+        }
+
+        else {
+
+          addLine(
+            "command not found: " + raw,
+            "err"
+          );
+
+        }
+
+
+        input.value = "";
+
+      }
     );
 
-  }
-);
-
-input.addEventListener(
-  "keydown",
-  event => {
-
-    if(event.key !== "Enter") return;
-
-    const raw =
-      input.value.trim();
-
-    if(!raw) return;
-
-    addLine(
-      "$ " + raw,
-      "echo"
-    );
-
-    const command =
-      raw.toLowerCase();
-
-    if(command === "help") {
-
-      addLine(
-        "available commands: help, music, short, exfil, snake, kawaii, normal, hacker, clear",
-        "ok"
-      );
-
-    }
-
-    else if(command === "clear") {
-
-      log.replaceChildren();
-
-    }
-
-    else if(command === "snake") {
-
-      startSnake();
-
-    }
-
-    else if(command === "kawaii") {
-
-      activateKawaiiMode();
-
-    }
-
-    else if(
-      command === "normal" ||
-      command === "hacker"
-    ) {
-
-      deactivateKawaiiMode();
-
-    }
-
-    else if(command === "exfil") {
-
-      runExfil();
-
-    }
-
-    else if(COMMANDS[command]) {
-
-      const selected =
-        COMMANDS[command];
-
-      addLine(
-        selected.message,
-        "ok"
-      );
-
-      window.open(
-        selected.url,
-        "_blank",
-        "noopener,noreferrer"
-      );
-
-    }
-
-    else {
-
-      addLine(
-        "command not found: " + raw,
-        "err"
-      );
-
-    }
-
-    input.value = "";
-
-  }
-);
-
-window.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    commentsBox.classList.add(
-      "closed"
-    );
-
-    commentsToggle.classList.add(
-      "closed"
-    );
-
-    setTimeout(
-      typeBootCommand,
-      500
-    );
-
-  }
-);
-
-</script>
+  </script>
 
 </body>
 </html>
